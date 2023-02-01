@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 
 const register = async (req, res) => {
-  const { firstname, lastname, mobile, email, password } = req.body;
+  const { lastname, firstname, mobile, email, password } = req.body;
 
   if (!firstname || firstname.length < 3 || firstname.length > 50) {
     throw new BadRequestError(
@@ -27,9 +27,21 @@ const register = async (req, res) => {
     throw new BadRequestError('Veuillez fournir un email valide');
   }
 
-  const isValidetel=
+  // /^(\+33 |0)[1-9]( \d\d){4}$/
 
-  if (!password || password.length < 6) {
+  const isValideTel = /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/.test(mobile);
+
+  if (!mobile || !isValideTel) {
+    throw new BadRequestError(
+      'veuillez indiquer un numéro de téléphone valide'
+    );
+  }
+
+  // if (!location) {
+  //   throw new BadRequestError("renseignez votre adresse s'il vous plaît");
+  // }
+
+  if (!password || password.length < 5) {
     throw new BadRequestError(
       'Veuillez fournir un mot de passe avec au moins 6 caractéres'
     );
@@ -43,8 +55,8 @@ const register = async (req, res) => {
   const {
     rows: [user],
   } = await db.query(
-    'INSERT INTO users (firstname, lastname, mobile, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-    [firstname, lastname, mobile, email, hashedPassword]
+    'INSERT INTO users (lastname, firstname, mobile, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+    [lastname, firstname, mobile, email, hashedPassword]
   );
 
   // génère un token qui va permettre de retrouver les infos de l'user
@@ -68,7 +80,7 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new BadRequestError('fournir un email valide');
+    throw new BadRequestError('identifiant ou mot de passe incorrect');
   }
 
   const {
