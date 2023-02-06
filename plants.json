@@ -1,0 +1,37 @@
+[
+  {
+    "name": "aubergine",
+    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691862/Jardins_plants/image_y6bp46.png",
+    "plantation_start": "01 avril",
+    "plantation_fin": "31 mai",
+    "recolte_start": "15 juillet"
+  },
+  {
+    "name": "tomate",
+    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691977/Jardins_plants/image_flnxvt.png",
+    "plantation_start": "15 avril",
+    "plantation_fin": "15 juin",
+    "recolte_start": "01 juillet"
+  },
+  {
+    "name": "haricots verts",
+    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692122/Jardins_plants/image_z3gjlg.png",
+    "plantation_start": "15 avril",
+    "plantation_fin": "30 juin",
+    "recolte_start": "01 juillet"
+  },
+  {
+    "name": "courgette",
+    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692017/Jardins_plants/image_sidrqp.png",
+    "plantation_start": "01 mai",
+    "plantation_fin": "31 juillet",
+    "recolte_start": "01 juin"
+  },
+  {
+    "name": "radis",
+    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692173/Jardins_plants/image_ltnbme.png",
+    "plantation_start": "01 mars",
+    "plantation_fin": "30 septembre",
+    "recolte_start": "15 avril"
+  }
+]

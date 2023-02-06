@@ -27,8 +27,6 @@ const register = async (req, res) => {
     throw new BadRequestError('Veuillez fournir un email valide');
   }
 
-  // /^(\+33 |0)[1-9]( \d\d){4}$/
-
   const isValideTel = /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/.test(mobile);
 
   if (!mobile || !isValideTel) {
@@ -36,10 +34,6 @@ const register = async (req, res) => {
       'veuillez indiquer un numéro de téléphone valide'
     );
   }
-
-  // if (!location) {
-  //   throw new BadRequestError("renseignez votre adresse s'il vous plaît");
-  // }
 
   if (!password || password.length < 5) {
     throw new BadRequestError(
@@ -75,6 +69,8 @@ const register = async (req, res) => {
     token,
   });
 };
+
+//* login
 
 const login = async (req, res) => {
   const { email, password } = req.body;

@@ -1,4 +1,4 @@
-CREATE DATABASE  jardins_autour;
+CREATE DATABASE jardins_autour;
 
 CREATE TABLE users(
   user_id SERIAL PRIMARY KEY,
@@ -7,8 +7,8 @@ CREATE TABLE users(
   mobile VARCHAR(20) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  CHECK (char_length(firstname) >= 3 AND char_length(firstname) <= 50),
-  CHECK (char_length(lastname) >=3 AND char_length(lastname)<=50),
+  CHECK (char_length(firstname) >= 1 AND char_length(firstname) <= 50),
+  CHECK (char_length(lastname) >=1 AND char_length(lastname)<=50),
   CHECK (char_length(mobile) >=3 AND char_length(mobile)<=20),
   CHECK (char_length(password) >= 6),
   UNIQUE (email)
@@ -20,3 +20,29 @@ CREATE TABLE tasks(
   is_completed BOOLEAN DEFAULT FALSE,
   user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL
 );
+
+CREATE TABLE plants(
+    plant_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    img VARCHAR(255) NOT NULL,
+    plantation_start VARCHAR (20) , 
+    plantation_fin VARCHAR (20),
+    recolte_start VARCHAR(20)
+);
+
+CREATE TABLE plants_details(
+  plants_details SERIAL PRIMARY KEY,
+  plant_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
+  semis_abri_start VARCHAR (20),
+  semis_abri_fin VARCHAR (20),
+  semis_terre_start VARCHAR (20),
+  semis_terre_fin VARCHAR (20),
+  récolte_fin VARCHAR (20),
+  plantation_details TEXT,
+  culture TEXT,
+  friends_plants TEXT,
+  ennemy_plants TEXT,
+  rotation_cultures VARCHAR (255)
+
+)
+

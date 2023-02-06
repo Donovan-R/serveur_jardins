@@ -1,0 +1,67 @@
+[
+  {
+    "plant_id": 1,
+    "semis_abri_start": "15 janvier",
+    "semis_abri_fin": "31 mars",
+    "semis_terre_start": null,
+    "semis_terre_fin": null,
+    "recolte_fin": "31 octobre",
+    "plantation_details": "Repiquez dans le potager ou dans une serre entre avril et mai suivant les régions. Elle est assez facile à faire pousser dans les régions du Sud, pour les autres il vaut mieux disposer d'une serre pour avoir une récolte satisfaisante.",
+    "culture": "Coupez la tête du plant lorsqu'il a formé 2 ou 3 bouquets de fleurs car cela permet de créer des ramification. Comme pour les pieds de tomates, coupez les gourmands.",
+    "friends_plants": "estragon, haricot, persil, pois, thym, œillets d'inde.",
+    "ennemy_plants": "oignons, poivrons et des pommes de terre. Néanmoins vous pouvez planter un pied d'aubergine à proximité de votre rang de pommes de terre pour les protéger des doryphores.",
+    "rotation_cultures": "3 ou 4 ans."
+  },
+  {
+    "plant_id": 2,
+    "semis_abri_start": "15 février",
+    "semis_abri_fin": "15 avril",
+    "semis_terre_start": null,
+    "semis_terre_fin": null,
+    "recolte_fin": "31 octobre",
+    "plantation_details": "Plantez dans le potager une fois les dernières gelées passées. Vous pouvez déposer des feuilles d'orties hachées au fond du trou de plantation (15 à 20 cm de profondeur), cela fortifiera les pieds de tomates et les protégera (un peu) du mildiou. Certains jardiniers préfèrent déposer les orties en surface en paillage.",
+    "culture": "Coupez les gourmands dès leur apparition, ils ralentissent la formation des fleurs. 4 à 5 semaines après la plantation, arrosez avec une solution diluée au purin d'orties pour fortifier les pieds. 6 à 8 semaines après la plantation, pulvérisez une solution à base de bouillie bordelaise en préventif contre le mildiou. Cette solution peu être diluée 2 fois plus que lors d'une utilisation curative.",
+    "friends_plants": "Plantez du basilic et des œillets d'inde entre les pieds de tomates pour les protéger des maladies et des nématodes (des vers s'attaquant aux racines). Le concombre s'associe également bien avec la tomate.",
+    "ennemy_plants": "Éloignez les pommes de terre sujettes aussi au mildiou.",
+    "rotation_cultures": "Attendez 3 ans avant de replanter des tomates au même endroit."
+  },
+  {
+    "plant_id": 3,
+    "semis_abri_start": null,
+    "semis_abri_fin": null,
+    "semis_terre_start": "15 avril",
+    "semis_terre_fin": "30 juin",
+    "recolte_fin": "30 septembre",
+    "plantation_details": "Le haricot est très sensible au froid, semez-le de fin avril à start juillet. Faites tremper les graines 1 à 2 heures avant de semer pour accélérer la germination. Les graines doivent couler, si une graine flotte, elle ne germera pas et risque d'abriter une larve d'insecte qui pourrait s'attaquer aux graines semées : à éliminer.",
+    "culture": "Les gousses se récoltent jeunes : entre 60 et 80 jours après le semis. Les haricots en grains frais se récoltent entre 90 et 110 jours après semis. Les haricots en grains secs, à conserver, se récoltent à pleine maturité : entre 120 et 140 jours après semis.",
+    "friends_plants": "Les haricots aiment la proximité du maïs et des pommes de terre.",
+    "ennemy_plants": null,
+    "rotation_cultures": null
+  },
+  {
+    "plant_id": 4,
+    "semis_abri_start": "01 mars",
+    "semis_abri_fin": "15 mai",
+    "semis_terre_start": "15 avril",
+    "semis_terre_fin": "15 mai",
+    "recolte_fin": "31 octobre",
+    "plantation_details": "Plantez au jardin une fois les dernières gelées passées. Fertilisez le sol avec du compost ou du terreau avant la plantation.",
+    "culture": null,
+    "friends_plants": "œillet d'inde, marguerite, tournesol,  maïs, haricots",
+    "ennemy_plants": "les pommes de terre",
+    "rotation_cultures": "Attendre 2 ou 3 ans avant de faire revenir les courgettes au même emplacement."
+  },
+  {
+    "plant_id": 5,
+    "semis_abri_début": null,
+    "semis_abri_fin": null,
+    "semis_terre_début": "01 mars",
+    "semis_terre_fin": "30 septembre",
+    "recolte_fin": "15 novembre",
+    "plantation_details": "En semant diverses variétés de radis, on peut en consommer pendant une bonne partie de l’année. Très tôt au printemps, on sème les petits radis rouges de forme ronde, puis un peu plus tard, les radis « français », de forme plus allongée, qui résistent mieux à la chaleur. En juillet et août, on sème les variétés de longue conservation : noir, daikon, chinois rouge ou vert.",
+    "culture": "Récoltez les radis 6 semaines après le semis.",
+    "friends_plants": "haricots, pois, capucines, choux, laitues, cresson, carottes, épinards, ou tomates.",
+    "ennemy_plants": "concombres, pastèques",
+    "rotation_cultures": null
+  }
+]

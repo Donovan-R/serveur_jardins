@@ -5,10 +5,11 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-// const authenticateUser = require('./middleware/authentication.js');
+const authenticateUser = require('./middleware/authentication.js');
 //* routers
 const authRouter = require('./routes/auth.js');
-// const tasksRouter = require('./routes/tasks.js');
+const tasksRouter = require('./routes/tasks.js');
+const plantsRouter = require('./routes/plants.js');
 
 const notFound = require('./middleware/notFound.js');
 const errorHandler = require('./middleware/error-handler.js');
@@ -17,8 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 //* routes
+
+app.use('/api/v1/plants', plantsRouter);
 app.use('/api/v1/auth', authRouter);
-// app.use('/api/v1/tasks', authenticateUser, tasksRouter);
+app.use('/api/v1/tasks', authenticateUser, tasksRouter);
 
 //*middleware
 app.use(notFound);
