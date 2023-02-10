@@ -5,6 +5,15 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
+const fileUpload = require('express-fileupload');
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
 const authenticateUser = require('./middleware/authentication.js');
 //* routers
 const authRouter = require('./routes/auth.js');
@@ -16,6 +25,12 @@ const errorHandler = require('./middleware/error-handler.js');
 
 app.use(cors());
 app.use(express.json());
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 
 //* routes
 

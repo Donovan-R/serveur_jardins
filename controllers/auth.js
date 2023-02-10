@@ -5,7 +5,15 @@ const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 
 const register = async (req, res) => {
-  const { lastname, firstname, mobile, email, password } = req.body;
+  const {
+    lastname,
+    firstname,
+    mobile,
+    email,
+    password,
+    justificatif,
+    comments,
+  } = req.body;
 
   if (!firstname || firstname.length < 3 || firstname.length > 50) {
     throw new BadRequestError(
@@ -49,8 +57,8 @@ const register = async (req, res) => {
   const {
     rows: [user],
   } = await db.query(
-    'INSERT INTO users (lastname, firstname, mobile, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-    [lastname, firstname, mobile, email, hashedPassword]
+    'INSERT INTO users (lastname, firstname, mobile, email, password, justificatif, comments) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    [lastname, firstname, mobile, email, hashedPassword, justificatif, comments]
   );
 
   // génère un token qui va permettre de retrouver les infos de l'user

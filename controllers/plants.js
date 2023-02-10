@@ -59,7 +59,10 @@ const getSinglePlant = async (req, res) => {
   console.log(id);
   const {
     rows: [plant],
-  } = await db.query('SELECT * FROM plants where plant_id = $1', [id]);
+  } = await db.query(
+    'SELECT * FROM plants INNER JOIN plants_details ON plants.plant_id = $1',
+    [id]
+  );
   res.status(StatusCodes.OK).json({ plant });
 };
 
