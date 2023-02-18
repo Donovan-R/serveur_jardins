@@ -1,0 +1,38 @@
+[
+  {
+    "plant_id": 1,
+    "sowing_location_id": 1,
+    "sowing_date_start": "2023-01-15",
+    "sowing_date_end": "2023-03-30"
+  },
+  {
+    "plant_id": 2,
+    "sowing_location_id": 1,
+    "sowing_date_start": "2023-02-15",
+    "sowing_date_end": "2023-04-15"
+  },
+  {
+    "plant_id": 3,
+    "sowing_location_id": 2,
+    "sowing_date_start": "2023-04-15",
+    "sowing_date_end": "2023-06-30"
+  },
+  {
+    "plant_id": 4,
+    "sowing_location_id": 1,
+    "sowing_date_start": "2023-03-01",
+    "sowing_date_end": "2023-05-15"
+  },
+  {
+    "plant_id": 4,
+    "sowing_location_id": 2,
+    "sowing_date_start": "2023-04-15",
+    "sowing_date_end": "2023-05-15"
+  },
+  {
+    "plant_id": 5,
+    "sowing_location_id": 2,
+    "sowing_date_start": "2023-03-01",
+    "sowing_date_end": "2023-09-30"
+  }
+]

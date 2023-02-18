@@ -2,72 +2,42 @@
 const db = require('../db');
 const { StatusCodes } = require('http-status-codes');
 
-const getAllPlantsStatic = async (req, res) => {
-  const { rows } = await db.query(queryString, parameters);
-  res.status(200).send({ plants: rows, nbHits: getAllPlants.length });
-};
-
-// const getAllPlants = async (req, res) => {
-//   const { name, sort, fields } = req.query;
-
-//   let queryString = 'select * from plants';
-//   let parameters = [];
-
-//   if (fields) {
-//     queryString = `select ${fields} from plants`;
-//   }
-
-//   if (name) {
-//     queryString += ' where name ilike $1';
-//     parameters.push(`%${name}`);
-//   }
-
-//   if (sort) {
-//     const sortList = sort
-//       .split(',')
-//       .map((field) =>
-//         field.startsWith('-') ? `${field.slice(1)} DESC :` : field
-//       )
-//       .join(',');
-//     queryString += ` ORDER by ${sortList}`;
-//   }
-
-//   const page = Number(req.query.page) || 1;
-//   const limit = Number(req.query.limmit) || 10;
-//   const offset = (page - 1) * limit;
-
-//   queryString += ` limit $${parameters.length + 1} OFFSET $${
-//     parameters.length + 2
-//   }`;
-//   parameters.push(limit, offset);
-//   console.log(queryString);
-
-//   const { rows } = await db.query(queryString, parameters);
-
-//   res.status(200).send({ plants: rows, nbHits: getAllPlants.length });
-// };
-
 const getAllPlants = async (req, res) => {
-  const { rows: plants } = await db.query('select * from plants');
+  const { rows: plants } = await db.query(
+    // 'select * from plants ORDER BY name ASC'
+    `select plant_id, name, img, to_char(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm from plants ORDER BY name ASC`
+  );
 
   res.status(StatusCodes.OK).json({ plants });
 };
 
 //*un seul plant
+
 const getSinglePlant = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const {
     rows: [plant],
   } = await db.query(
-    'SELECT * FROM plants INNER JOIN plants_details ON plants.plant_id = $1',
+    `SELECT plants.name AS plant_name, img, TO_CHAR(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm FROM plants WHERE plants.plant_id = $1`,
     [id]
   );
-  res.status(StatusCodes.OK).json({ plant });
+  const {
+    rows: [sowing_inside],
+  } = await db.query(
+    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_inside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_inside FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 1 AND plants.plant_id = $1`,
+    [id]
+  );
+  const {
+    rows: [sowing_outside],
+  } = await db.query(
+    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_outside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_outside FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 2 AND plants.plant_id = $1`,
+    [id]
+  );
+
+  res.status(StatusCodes.OK).json({ plant, sowing_inside, sowing_outside });
 };
 
 module.exports = {
   getAllPlants,
-  getAllPlantsStatic,
   getSinglePlant,
 };

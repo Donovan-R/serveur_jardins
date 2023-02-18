@@ -2,36 +2,71 @@
   {
     "name": "aubergine",
     "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691862/Jardins_plants/image_y6bp46.png",
-    "plantation_start": "01 avril",
-    "plantation_fin": "31 mai",
-    "recolte_start": "15 juillet"
+    "plantation_date_start": "2023-04-01",
+    "plantation_date_end": "2023-05-31",
+    "harvest_date_start": "2023-07-15",
+    "harvest_date_end": "2023-10-31",
+    "plantation_details": "Repiquez dans le potager ou dans une serre entre avril et mai suivant les régions. Elle est assez facile à faire pousser dans les régions du Sud, pour les autres il vaut mieux disposer d'une serre pour avoir une récolte satisfaisante.",
+    "sowing_details": null,
+    "crop": "Coupez la tête du plant lorsqu'il a formé 2 ou 3 bouquets de fleurs car cela permet de créer des ramification. Comme pour les pieds de tomates, coupez les gourmands.",
+    "crop_rotation": "3 ou 4 ans.",
+    "rows_spacing_in_cm": 50,
+    "plants_spacing_in_cm": 40
   },
   {
     "name": "tomate",
     "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691977/Jardins_plants/image_flnxvt.png",
-    "plantation_start": "15 avril",
-    "plantation_fin": "15 juin",
-    "recolte_start": "01 juillet"
+    "plantation_date_start": "2023-04-15",
+    "plantation_date_end": "2023-06-15",
+    "harvest_date_start": "2023-07-01",
+    "harvest_date_end": "2023-10-31",
+    "plantation_details": "Plantez dans le potager une fois les dernières gelées passées. Vous pouvez déposer des feuilles d'orties hachées au fond du trou de plantation (15 à 20 cm de profondeur), cela fortifiera les pieds de tomates et les protégera (un peu) du mildiou. Certains jardiniers préfèrent déposer les orties en surface en paillage.",
+    "sowing_details": "Semez 4 ou 5 graines dans des petits pots en plastique. Vous ne garderez que le plus jolis des pieds.Les autres pourront éventuellement être replanté dans un nouveau pot lorsqu'ils auront 4 feuilles",
+    "crop": "Coupez les gourmands dès leur apparition, ils ralentissent la formation des fleurs. 4 à 5 semaines après la plantation, arrosez avec une solution diluée au purin d'orties pour fortifier les pieds. 6 à 8 semaines après la plantation, pulvérisez une solution à base de bouillie bordelaise en préventif contre le mildiou. Cette solution peu être diluée 2 fois plus que lors d'une utilisation curative.",
+    "crop_rotation": "Attendez 3 ans avant de replanter des tomates au même endroit.",
+    "rows_spacing_in_cm": 60,
+    "plants_spacing_in_cm": 60
   },
   {
-    "name": "haricots verts",
+    "name": "haricots à rames",
     "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692122/Jardins_plants/image_z3gjlg.png",
-    "plantation_start": "15 avril",
-    "plantation_fin": "30 juin",
-    "recolte_start": "01 juillet"
+    "plantation_date_start": "2023-04-15",
+    "plantation_date_end": "2023-06-30",
+    "harvest_date_start": "2023-07-01",
+    "harvest_date_end": "2023-09-30",
+    "plantation_details": "Le haricot est très sensible au froid, semez-le de fin avril à start juillet. Faites tremper les graines 1 à 2 heures avant de semer pour accélérer la germination. Les graines doivent couler, si une graine flotte, elle ne germera pas et risque d'abriter une larve d'insecte qui pourrait s'attaquer aux graines semées : à éliminer.",
+    "sowing_details": "Faites tremper les graines 1 à 2 heures avant de semer pour accélérer la germination. Les graines doivent couler, si une graine flotte, elle ne germera pas et risque d'abriter une larve d'insecte qui pourrait s'attaquer aux graines semées : à éliminer.",
+    "crop": "Les gousses se récoltent jeunes : entre 60 et 80 jours après le sowing. Les haricots en grains frais se récoltent entre 90 et 110 jours après sowing. Les haricots en grains secs, à conserver, se récoltent à pleine maturité : entre 120 et 140 jours après sowing.",
+    "crop_rotation": null,
+    "rows_spacing_in_cm": 70,
+    "plants_spacing_in_cm": 50
   },
   {
     "name": "courgette",
     "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692017/Jardins_plants/image_sidrqp.png",
-    "plantation_start": "01 mai",
-    "plantation_fin": "31 juillet",
-    "recolte_start": "01 juin"
+    "plantation_date_start": "2023-05-01",
+    "plantation_date_end": "2023-07-31",
+    "harvest_date_start": "2023-06-01",
+    "harvest_date_end": "2023-10-31",
+    "plantation_details": "Plantez au jardin une fois les dernières gelées passées. Fertilisez le sol avec du compost ou du terreau avant la plantation.",
+    "sowing_details": "Semez la cougette sous abri chauffé dès mars pour avoir une récolte précoce.Vous pouvez semer en pleine terre en avril/mai suivant votre région.",
+    "crop": null,
+    "crop_rotation": "Attendre 2 ou 3 ans avant de faire revenir les courgettes au même emplacement.",
+    "rows_spacing_in_cm": 100,
+    "plants_spacing_in_cm": 80
   },
   {
     "name": "radis",
     "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692173/Jardins_plants/image_ltnbme.png",
-    "plantation_start": "01 mars",
-    "plantation_fin": "30 septembre",
-    "recolte_start": "15 avril"
+    "plantation_date_start": "2023-03-01",
+    "plantation_date_end": "2023-09-30",
+    "harvest_date_start": "2023-04-15",
+    "harvest_date_end": "2023-11-15",
+    "plantation_details": "En semant diverses variétés de radis, on peut en consommer pendant une bonne partie de l’année. Très tôt au printemps, on sème les petits radis rouges de forme ronde, puis un peu plus tard, les radis « français », de forme plus allongée, qui résistent mieux à la chaleur. En juillet et août, on sème les variétés de longue conservation : noir, daikon, chinois rouge ou vert.",
+    "sowing_details": "Germination de 7 à 14 jours, semez en ligne ou à la volée, éclaircissez après la levée.",
+    "crop": "Récoltez les radis 6 semaines après le sowing.",
+    "crop_rotation": null,
+    "rows_spacing_in_cm": 15,
+    "plants_spacing_in_cm": 5
   }
 ]

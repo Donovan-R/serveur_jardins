@@ -3,23 +3,23 @@ const bcrypt = require('bcrypt');
 const db = require('../db');
 const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
 
 const register = async (req, res) => {
-  const {
-    lastname,
-    firstname,
-    mobile,
-    email,
-    password,
-    justificatif,
-    comments,
-  } = req.body;
+  const { lastname, firstname, mobile, email, password, comments, agree } =
+    req.body;
+
+  if (agree === 'false') {
+    throw new BadRequestError('veuillez accepter le règlement');
+  }
 
   if (!firstname || firstname.length < 3 || firstname.length > 50) {
     throw new BadRequestError(
       'Veuillez fournir un prénom valide entre 3 et 50 caractères'
     );
   }
+
   if (!lastname || lastname.length < 3 || lastname.length > 50) {
     throw new BadRequestError(
       'Veuillez fournir un nom valide entre 3 et 50 caractères'
@@ -49,6 +49,35 @@ const register = async (req, res) => {
     );
   }
 
+  if (!req.files) {
+    throw new BadRequestError('veuillez fournir un justificatif');
+  }
+
+  const { justificatif } = req.files;
+  console.log(justificatif.mimetype);
+
+  if (
+    !justificatif.mimetype.startsWith('application/pdf') &&
+    !justificatif.mimetype.startsWith('image')
+  ) {
+    throw new BadRequestError('veuillez charger un fichier PDF ou une image');
+  }
+
+  const maxSize = 1024 * 1024; //10 Mb
+  if (justificatif.size > maxSize) {
+    throw new BadRequestError(
+      'veuillez charger un document inférieure à 10 Mb'
+    );
+  }
+
+  const result = await cloudinary.uploader.upload(justificatif.tempFilePath, {
+    use_filename: true,
+    folder: 'jardins_plants/justificatifs',
+  });
+
+  //* suppression du fichier temp
+  fs.unlinkSync(justificatif.tempFilePath);
+
   // crypte le mot de passe
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -58,7 +87,15 @@ const register = async (req, res) => {
     rows: [user],
   } = await db.query(
     'INSERT INTO users (lastname, firstname, mobile, email, password, justificatif, comments) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-    [lastname, firstname, mobile, email, hashedPassword, justificatif, comments]
+    [
+      lastname,
+      firstname,
+      mobile,
+      email,
+      hashedPassword,
+      result.secure_url,
+      comments,
+    ]
   );
 
   // génère un token qui va permettre de retrouver les infos de l'user
@@ -72,7 +109,8 @@ const register = async (req, res) => {
 
   res.status(StatusCodes.CREATED).json({
     user: {
-      name: `${user.firstname} ${user.lastname}`,
+      name: `${user.firstname}`,
+      role: `${user.role_id}`,
     },
     token,
   });
@@ -109,9 +147,11 @@ const login = async (req, res) => {
     }
   );
 
-  res
-    .status(StatusCodes.OK)
-    .json({ user: { name: `${user.firstname} ${user.lastname}` }, token });
+  res.status(StatusCodes.OK).json({
+    user: { name: `${user.firstname}` },
+    role: `${user.role_id}`,
+    token,
+  });
 };
 
 module.exports = { register, login };

@@ -7,16 +7,35 @@ const start = async () => {
     await db.query('BEGIN');
 
     for (const plant of jsonPlants) {
-      const { name, img, plantation_start, plantation_fin, recolte_start } =
-        plant;
+      const {
+        name,
+        img,
+        plantation_date_start,
+        plantation_date_end,
+        harvest_date_start,
+        harvest_date_end,
+        plantation_details,
+        sowing_details,
+        crop,
+        crop_rotation,
+        rows_spacing_in_cm,
+        plants_spacing_in_cm,
+      } = plant;
 
-      const query = `INSERT INTO plants (name, img, plantation_start, plantation_fin, recolte_start) VALUES ($1, $2, $3, $4, $5)`;
+      const query = `INSERT INTO plants (name, img, plantation_date_start, plantation_date_end, harvest_date_start, harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
       await db.query(query, [
         name,
         img,
-        plantation_start,
-        plantation_fin,
-        recolte_start,
+        plantation_date_start,
+        plantation_date_end,
+        harvest_date_start,
+        harvest_date_end,
+        plantation_details,
+        sowing_details,
+        crop,
+        crop_rotation,
+        rows_spacing_in_cm,
+        plants_spacing_in_cm,
       ]);
     }
 
