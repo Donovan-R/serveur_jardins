@@ -54,7 +54,6 @@ const register = async (req, res) => {
   }
 
   const { justificatif } = req.files;
-  console.log(justificatif.mimetype);
 
   if (
     !justificatif.mimetype.startsWith('application/pdf') &&

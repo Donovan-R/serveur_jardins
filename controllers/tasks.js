@@ -31,7 +31,6 @@ const getAllTasks = async (req, res) => {
 //*update
 const updateTask = async (req, res) => {
   const { name, is_completed } = req.body;
-
   const { id: taskID } = req.params;
 
   if (!name) {
