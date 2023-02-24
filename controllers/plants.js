@@ -33,8 +33,25 @@ const getSinglePlant = async (req, res) => {
     `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_outside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_outside FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 2 AND plants.plant_id = $1`,
     [id]
   );
+  const {
+    rows: [plants_friends],
+  } = await db.query(
+    'SELECT plants.name AS plants_friends_name FROM plants INNER JOIN plants_friends ON plants.plant_id=plants_friends.plant_friend_id WHERE plants_friends.plant_id=$1',
+    [id]
+  );
+  const {
+    rows: [plants_ennemies],
+  } = await db.query(
+    'SELECT plants.name AS plants_ennemies_name FROM plants INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id'
+  );
 
-  res.status(StatusCodes.OK).json({ plant, sowing_inside, sowing_outside });
+  res.status(StatusCodes.OK).json({
+    plant,
+    sowing_inside,
+    sowing_outside,
+    plants_ennemies,
+    plants_friends,
+  });
 };
 
 module.exports = {

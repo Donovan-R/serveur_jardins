@@ -11,7 +11,7 @@ const register = async (req, res) => {
     req.body;
 
   if (agree === 'false') {
-    throw new BadRequestError('veuillez accepter le règlement');
+    throw new BadRequestError('veuillez accepter le règlement intérieur');
   }
 
   if (!firstname || firstname.length < 3 || firstname.length > 50) {
@@ -99,7 +99,10 @@ const register = async (req, res) => {
 
   // génère un token qui va permettre de retrouver les infos de l'user
   const token = jwt.sign(
-    { userID: user.user_id, name: `${user.firstname} ${user.lastname}` },
+    {
+      userID: user.user_id,
+      name: `${user.firstname} ${user.lastname}`,
+    },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_LIFETIME,
@@ -108,8 +111,9 @@ const register = async (req, res) => {
 
   res.status(StatusCodes.CREATED).json({
     user: {
-      name: `${user.firstname}`,
-      role: `${user.role_id}`,
+      name: user.firstname,
+      role: user.role_id,
+      email: user.email,
     },
     token,
   });
@@ -129,17 +133,17 @@ const login = async (req, res) => {
   } = await db.query('select * from users where email = $1', [email]);
 
   if (!user) {
-    throw new UnauthentificatedError('id incorrects');
+    throw new UnauthentificatedError('identifiant incorrect');
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
   if (!isPasswordCorrect) {
-    throw new UnauthentificatedError('mdp incorrect');
+    throw new UnauthentificatedError('mot de passe incorrect');
   }
 
   const token = jwt.sign(
-    { userID: user.user_id, name: `${user.firstname} ${user.lastname}` },
+    { userID: user.user_id, name: user.firstname },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_LIFETIME,
@@ -147,8 +151,7 @@ const login = async (req, res) => {
   );
 
   res.status(StatusCodes.OK).json({
-    user: { name: `${user.firstname}` },
-    role: `${user.role_id}`,
+    user: { name: user.firstname, role: user.role_id, email: user.email },
     token,
   });
 };

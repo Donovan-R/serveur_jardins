@@ -5,7 +5,7 @@ const auth = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new UnauthentificatedError('Authentification non valide');
+    throw new UnauthentificatedError('identification non valide');
   }
 
   const token = authHeader.split(' ')[1];
@@ -21,7 +21,7 @@ const auth = (req, res, next) => {
 
     next();
   } catch (error) {
-    throw new UnauthentificatedError('Authentification invalide');
+    throw new UnauthentificatedError('identification invalide');
   }
 };
 
