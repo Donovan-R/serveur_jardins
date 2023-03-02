@@ -9,7 +9,9 @@ const start = async () => {
     for (const plant of jsonPlants) {
       const {
         name,
-        img,
+        main_img,
+        img_inter,
+        img_plant,
         plantation_date_start,
         plantation_date_end,
         harvest_date_start,
@@ -22,10 +24,12 @@ const start = async () => {
         plants_spacing_in_cm,
       } = plant;
 
-      const query = `INSERT INTO plants (name, img, plantation_date_start, plantation_date_end, harvest_date_start, harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+      const query = `INSERT INTO plants (name,  main_img, img_inter, img_plant, plantation_date_start, plantation_date_end, harvest_date_start, harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`;
       await db.query(query, [
         name,
-        img,
+        main_img,
+        img_inter,
+        img_plant,
         plantation_date_start,
         plantation_date_end,
         harvest_date_start,

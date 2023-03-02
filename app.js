@@ -46,6 +46,9 @@ app.use('/api/v1/dash', authenticateUser, adminRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(5000, () => {
-  console.log('Le serveur écoute sur le port 5000...');
+//* pour mettre en ligne
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
+  console.log(`Le serveur écoute sur le port ${port}...`);
 });

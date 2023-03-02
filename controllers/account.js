@@ -16,6 +16,14 @@ const getUserInfos = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ user });
 };
+const deleteAccount = async (req, res) => {
+  const { userID } = req.user;
+  const { rows: data } = await db.query(
+    'DELETE FROM users WHERE user_id = $1 RETURNING *',
+    [userID]
+  );
+  res.status(StatusCodes.OK).json({ data });
+};
 
 const updateUserInfos = async (req, res) => {
   const {
@@ -111,4 +119,5 @@ module.exports = {
   getUserInfos,
   updateUserInfos,
   updatePassword,
+  deleteAccount,
 };

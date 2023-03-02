@@ -39,7 +39,9 @@ CREATE TABLE roles(
 CREATE TABLE plants(
     plant_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) NOT NULL,
+    main_img VARCHAR(255) NOT NULL,
+    img_inter VARCHAR(255) NOT NULL,
+    img_plant VARCHAR(255) NOT NULL,
     plantation_date_start DATE, 
     plantation_date_end DATE, 
     harvest_date_start DATE, 

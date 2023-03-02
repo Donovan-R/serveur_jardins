@@ -1,11 +1,11 @@
-// const { ParameterStatusMessage } = require('pg-protocol/dist/messages');
 const db = require('../db');
 const { StatusCodes } = require('http-status-codes');
 
+//* Tous les plants
 const getAllPlants = async (req, res) => {
   const { rows: plants } = await db.query(
     // 'select * from plants ORDER BY name ASC'
-    `select plant_id, name, img, to_char(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm from plants ORDER BY name ASC`
+    `SELECT plant_id, name, main_img, img_inter, img_plant, to_char(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm FROM plants ORDER BY name ASC`
   );
 
   res.status(StatusCodes.OK).json({ plants });
@@ -18,7 +18,7 @@ const getSinglePlant = async (req, res) => {
   const {
     rows: [plant],
   } = await db.query(
-    `SELECT plants.name AS plant_name, img, TO_CHAR(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm FROM plants WHERE plants.plant_id = $1`,
+    `SELECT plants.name AS plant_name, main_img, img_inter, img_plant, TO_CHAR(plantation_date_start, 'dd/mm' ) AS plantation_date_start, TO_CHAR(plantation_date_end, 'dd/mm') AS plantation_date_end, TO_CHAR(harvest_date_start, 'dd/mm') AS harvest_date_start, TO_CHAR(harvest_date_end, 'dd/mm') AS harvest_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm FROM plants WHERE plants.plant_id = $1`,
     [id]
   );
   const {
@@ -42,7 +42,8 @@ const getSinglePlant = async (req, res) => {
   const {
     rows: [plants_ennemies],
   } = await db.query(
-    'SELECT plants.name AS plants_ennemies_name FROM plants INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id'
+    'SELECT plants.name AS plants_ennemies_name FROM plants INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id WHERE plants_ennemies.plant_id=$1',
+    [id]
   );
 
   res.status(StatusCodes.OK).json({

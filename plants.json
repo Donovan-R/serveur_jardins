@@ -1,7 +1,9 @@
 [
   {
-    "name": "aubergine",
-    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691862/Jardins_plants/image_y6bp46.png",
+    "name": "Aubergine",
+    "main_img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691862/Jardins_plants/image_y6bp46.png",
+    "img_inter": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489037/Jardins_plants/aubergine_mid_d3ra1m.jpg",
+    "img_plant": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489037/Jardins_plants/aubergine_plant_xkl9sm.jpg",
     "plantation_date_start": "2023-04-01",
     "plantation_date_end": "2023-05-31",
     "harvest_date_start": "2023-07-15",
@@ -14,8 +16,10 @@
     "plants_spacing_in_cm": 40
   },
   {
-    "name": "tomate",
-    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691977/Jardins_plants/image_flnxvt.png",
+    "name": "Tomate",
+    "main_img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675691977/Jardins_plants/image_flnxvt.png",
+    "img_inter": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677488774/Jardins_plants/tomate_mid_zhphu3.webp",
+    "img_plant": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677488774/Jardins_plants/tomate_plant_m0xe7q.jpg",
     "plantation_date_start": "2023-04-15",
     "plantation_date_end": "2023-06-15",
     "harvest_date_start": "2023-07-01",
@@ -28,8 +32,10 @@
     "plants_spacing_in_cm": 60
   },
   {
-    "name": "haricots à rames",
-    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692122/Jardins_plants/image_z3gjlg.png",
+    "name": "Haricots à rames",
+    "main_img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692122/Jardins_plants/image_z3gjlg.png",
+    "img_inter": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489565/Jardins_plants/haricots_mid_datboz.jpg",
+    "img_plant": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489565/Jardins_plants/haricots_plant_rzm7sa.jpg",
     "plantation_date_start": "2023-04-15",
     "plantation_date_end": "2023-06-30",
     "harvest_date_start": "2023-07-01",
@@ -42,8 +48,10 @@
     "plants_spacing_in_cm": 50
   },
   {
-    "name": "courgette",
-    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692017/Jardins_plants/image_sidrqp.png",
+    "name": "Courgette",
+    "main_img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692017/Jardins_plants/image_sidrqp.png",
+    "img_inter": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677488313/Jardins_plants/courgette_mid_ovhbui.jpg",
+    "img_plant": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677488009/Jardins_plants/AdobeStock_188081004-courgette_sholix.jpg",
     "plantation_date_start": "2023-05-01",
     "plantation_date_end": "2023-07-31",
     "harvest_date_start": "2023-06-01",
@@ -56,8 +64,10 @@
     "plants_spacing_in_cm": 80
   },
   {
-    "name": "radis",
-    "img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692173/Jardins_plants/image_ltnbme.png",
+    "name": "Radis",
+    "main_img": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1675692173/Jardins_plants/image_ltnbme.png",
+    "img_inter": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489565/Jardins_plants/radis_mid_d3bsqo.jpg",
+    "img_plant": "https://res.cloudinary.com/dlovq0hsk/image/upload/v1677489565/Jardins_plants/radis_plant_jmrww0.jpg",
     "plantation_date_start": "2023-03-01",
     "plantation_date_end": "2023-09-30",
     "harvest_date_start": "2023-04-15",

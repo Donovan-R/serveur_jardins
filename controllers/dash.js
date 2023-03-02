@@ -4,7 +4,7 @@ const { BadRequestError, NotFoundError } = require('../errors');
 
 const getUsers = async (req, res) => {
   const { rows: data } = await db.query(
-    'SELECT * from users INNER JOIN roles ON roles.role_id = users.role_id'
+    'SELECT * from users INNER JOIN roles ON roles.role_id = users.role_id ORDER BY firstname'
   );
   res.status(StatusCodes.OK).json({ data });
 };
@@ -63,8 +63,24 @@ const editUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user });
 };
 
+//*plants
+//* récupérer
+const getSinglePlantInfos = async (req, res) => {
+  const { plant_id } = req.params;
+  const {
+    rows: [plant],
+  } = await db.query(
+    // `SELECT * FROM plants INNER JOIN sowing_periods ON plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id INNER JOIN plants_friends ON plants.plant_id=plants_friends.plant_friend_id INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id WHERE plants.plant_id = $1`,
+    'SELECT * FROM plants WHERE plant_id=$1',
+    [plant_id]
+  );
+
+  res.status(StatusCodes.OK).json({ plant });
+};
+
 module.exports = {
   getUsers,
   deleteUser,
   editUser,
+  getSinglePlantInfos,
 };
