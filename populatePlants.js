@@ -53,7 +53,7 @@ const start = async () => {
     );
     process.exit(1);
   } finally {
-    db.end();
+    // db.end();
   }
 };
 
