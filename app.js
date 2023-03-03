@@ -25,7 +25,7 @@ const adminRouter = require('./routes/dash.js');
 const notFound = require('./middleware/notFound.js');
 const errorHandler = require('./middleware/error-handler.js');
 
-app.use(cors());
+app.use(cors({ origin: 'https://autour-des-jardins-de-chereng.netlify.app' }));
 app.use(express.json());
 
 app.use(
