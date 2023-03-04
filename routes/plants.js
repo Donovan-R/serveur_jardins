@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllPlants, getSinglePlant } = require('../controllers/plants.js');
+const {
+  getAllPlants,
+  getSinglePlant,
+  editSinglePlantInfos,
+} = require('../controllers/plants.js');
 
 router.route('/').get(getAllPlants);
-router.route('/:id').get(getSinglePlant);
+router.route('/:id').get(getSinglePlant).put(editSinglePlantInfos);
 
 module.exports = router;

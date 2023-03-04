@@ -42,7 +42,7 @@
     "harvest_date_end": "2023-09-30",
     "plantation_details": "Le haricot est très sensible au froid, semez-le de fin avril à start juillet. Faites tremper les graines 1 à 2 heures avant de semer pour accélérer la germination. Les graines doivent couler, si une graine flotte, elle ne germera pas et risque d'abriter une larve d'insecte qui pourrait s'attaquer aux graines semées : à éliminer.",
     "sowing_details": "Faites tremper les graines 1 à 2 heures avant de semer pour accélérer la germination. Les graines doivent couler, si une graine flotte, elle ne germera pas et risque d'abriter une larve d'insecte qui pourrait s'attaquer aux graines semées : à éliminer.",
-    "crop": "Les gousses se récoltent jeunes : entre 60 et 80 jours après le sowing. Les haricots en grains frais se récoltent entre 90 et 110 jours après sowing. Les haricots en grains secs, à conserver, se récoltent à pleine maturité : entre 120 et 140 jours après sowing.",
+    "crop": "Les gousses se récoltent jeunes : entre 60 et 80 jours après le semis. Les haricots en grains frais se récoltent entre 90 et 110 jours après sowing. Les haricots en grains secs, à conserver, se récoltent à pleine maturité : entre 120 et 140 jours après semis.",
     "crop_rotation": null,
     "rows_spacing_in_cm": 70,
     "plants_spacing_in_cm": 50
@@ -74,7 +74,7 @@
     "harvest_date_end": "2023-11-15",
     "plantation_details": "En semant diverses variétés de radis, on peut en consommer pendant une bonne partie de l’année. Très tôt au printemps, on sème les petits radis rouges de forme ronde, puis un peu plus tard, les radis « français », de forme plus allongée, qui résistent mieux à la chaleur. En juillet et août, on sème les variétés de longue conservation : noir, daikon, chinois rouge ou vert.",
     "sowing_details": "Germination de 7 à 14 jours, semez en ligne ou à la volée, éclaircissez après la levée.",
-    "crop": "Récoltez les radis 6 semaines après le sowing.",
+    "crop": "Récoltez les radis 6 semaines après le semis.",
     "crop_rotation": null,
     "rows_spacing_in_cm": 15,
     "plants_spacing_in_cm": 5

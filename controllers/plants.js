@@ -55,7 +55,27 @@ const getSinglePlant = async (req, res) => {
   });
 };
 
+const editSinglePlantInfos = async (req, res) => {
+  const {
+    plantToEdit: { name, plantation_date_start, crop },
+  } = req.body;
+  const { id } = req.params;
+  const {
+    rows: [plant],
+  } = await db.query(
+    `UPDATE plants SET name=$1, plantation_date_start=$2, crop=$3  WHERE plants.plant_id = $4 RETURNING *`,
+    [name, plantation_date_start, crop, id]
+  );
+
+  res.status(StatusCodes.OK).json({
+    name,
+    plantation_date_start,
+    crop,
+  });
+};
+
 module.exports = {
   getAllPlants,
   getSinglePlant,
+  editSinglePlantInfos,
 };

@@ -6,6 +6,7 @@ const {
   deleteUser,
   editUser,
   getSinglePlantInfos,
+  editSinglePlantInfos,
 } = require('../controllers/dash.js');
 
 router.route('/').get(getUsers);
