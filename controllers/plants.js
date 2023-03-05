@@ -55,6 +55,7 @@ const getSinglePlant = async (req, res) => {
   });
 };
 
+//* éditer un plant (optionnel)
 const editSinglePlantInfos = async (req, res) => {
   const {
     plantToEdit: { name, plantation_date_start, crop },
@@ -74,8 +75,23 @@ const editSinglePlantInfos = async (req, res) => {
   });
 };
 
+//*créer un plant (dashboard donovan)
+const addPlant = async (req, res) => {
+  const {
+    newPlant: { name, main_img, img_inter, img_plant },
+  } = req.body;
+  const {
+    rows: [plant],
+  } = await db.query(
+    'INSERT into plants (name, main_img, img_inter, img_plant) VALUES ($1, $2, $3, $4) RETURNING *',
+    [name, main_img, img_inter, img_plant]
+  );
+  res.status(StatusCodes.CREATED).json({ plant });
+};
+
 module.exports = {
   getAllPlants,
   getSinglePlant,
   editSinglePlantInfos,
+  addPlant,
 };
