@@ -78,13 +78,43 @@ const editSinglePlantInfos = async (req, res) => {
 //*créer un plant (dashboard donovan)
 const addPlant = async (req, res) => {
   const {
-    newPlant: { name, main_img, img_inter, img_plant },
+    newPlant: {
+      name,
+      main_img,
+      img_inter,
+      img_plant,
+      harvest_date_start,
+      harvest_date_end,
+      plantation_date_start,
+      plantation_date_end,
+      plantation_details,
+      sowing_details,
+      crop,
+      crop_rotation,
+      rows_spacing_in_cm,
+      plants_spacing_in_cm,
+    },
   } = req.body;
   const {
     rows: [plant],
   } = await db.query(
-    'INSERT into plants (name, main_img, img_inter, img_plant) VALUES ($1, $2, $3, $4) RETURNING *',
-    [name, main_img, img_inter, img_plant]
+    'INSERT into plants (name,  main_img, img_inter, img_plant, harvest_date_start, harvest_date_end, plantation_date_start, plantation_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
+    [
+      name,
+      main_img,
+      img_inter,
+      img_plant,
+      harvest_date_start || null,
+      harvest_date_end || null,
+      plantation_date_start || null,
+      plantation_date_end || null,
+      plantation_details || null,
+      sowing_details || null,
+      crop || null,
+      crop_rotation || null,
+      rows_spacing_in_cm || null,
+      plants_spacing_in_cm || null,
+    ]
   );
   res.status(StatusCodes.CREATED).json({ plant });
 };
