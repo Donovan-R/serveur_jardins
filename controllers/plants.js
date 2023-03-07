@@ -65,13 +65,11 @@ const editSinglePlantInfos = async (req, res) => {
     rows: [plant],
   } = await db.query(
     `UPDATE plants SET name=$1, plantation_date_start=$2, crop=$3  WHERE plants.plant_id = $4 RETURNING *`,
-    [name, plantation_date_start, crop, id]
+    [name, plantation_date_start || null, crop || null, id]
   );
 
   res.status(StatusCodes.OK).json({
-    name,
-    plantation_date_start,
-    crop,
+    plant,
   });
 };
 
@@ -93,12 +91,16 @@ const addPlant = async (req, res) => {
       crop_rotation,
       rows_spacing_in_cm,
       plants_spacing_in_cm,
+      sowing_date_start_inside,
+      sowing_date_end_inside,
+      // sowing_date_start_outside,
+      // sowing_date_end_outside,
     },
   } = req.body;
   const {
     rows: [plant],
   } = await db.query(
-    'INSERT into plants (name,  main_img, img_inter, img_plant, harvest_date_start, harvest_date_end, plantation_date_start, plantation_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
+    'INSERT into plants (name, main_img, img_inter, img_plant, harvest_date_start, harvest_date_end, plantation_date_start, plantation_date_end, plantation_details, sowing_details, crop, crop_rotation, rows_spacing_in_cm, plants_spacing_in_cm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
     [
       name,
       main_img,
@@ -116,7 +118,13 @@ const addPlant = async (req, res) => {
       plants_spacing_in_cm || null,
     ]
   );
-  res.status(StatusCodes.CREATED).json({ plant });
+  const {
+    rows: [sowing_inside],
+  } = await db.query(
+    'INSERT INTO sowing_periods (sowing_date_start_inside, sowing_date_end_inside) VALUES ($15, $16) WHERE sowing_location_id=1',
+    [sowing_date_start_inside, sowing_date_end_inside]
+  );
+  res.status(StatusCodes.CREATED).json({ plant }, { sowing_inside });
 };
 
 module.exports = {
