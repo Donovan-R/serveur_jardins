@@ -58,19 +58,80 @@ const getSinglePlant = async (req, res) => {
 //* éditer un plant (optionnel)
 const editSinglePlantInfos = async (req, res) => {
   const {
-    plantToEdit: { name, plantation_date_start, crop },
+    newPlant: {
+      name,
+      main_img,
+      img_inter,
+      img_plant,
+      harvest_date_start,
+      harvest_date_end,
+      plantation_date_start,
+      plantation_date_end,
+      plantation_details,
+      sowing_details,
+      crop,
+      crop_rotation,
+      rows_spacing_in_cm,
+      plants_spacing_in_cm,
+      // sowing_date_start_inside,
+      // sowing_date_end_inside,
+      // sowing_date_start_outside,
+      // sowing_date_end_outside,
+      // plants_friends_name,
+      // plants_ennemies_name,
+    },
   } = req.body;
-  const { id } = req.params;
+  const { id: editPlantId } = req.params;
   const {
     rows: [plant],
   } = await db.query(
-    `UPDATE plants SET name=$1, plantation_date_start=$2, crop=$3  WHERE plants.plant_id = $4 RETURNING *`,
-    [name, plantation_date_start || null, crop || null, id]
+    `UPDATE plants SET name = $1, main_img = $2, img_inter = $3, img_plant = $4, harvest_date_start = $5, harvest_date_end = $6, plantation_date_start = $7, plantation_date_end = $8, plantation_details = $9, sowing_details = $10, crop = $11, crop_rotation = $12, rows_spacing_in_cm = $13, plants_spacing_in_cm = $14 WHERE plants.plant_id = $15 RETURNING *`,
+    [
+      name,
+      main_img,
+      img_inter,
+      img_plant,
+      harvest_date_start,
+      harvest_date_end,
+      plantation_date_start || null,
+      plantation_date_end || null,
+      plantation_details || null,
+      sowing_details || null,
+      crop || null,
+      crop_rotation || null,
+      rows_spacing_in_cm || null,
+      plants_spacing_in_cm || null,
+      editPlantId,
+    ]
+  );
+  const {
+    sowingInside: { sowing_date_start_inside, sowing_date_end_inside },
+  } = req.body;
+  const {
+    rows: [sowing_inside],
+  } = await db.query(
+    `UPDATE sowing_periods SET sowing_date_start = $1, sowing_date_end=$2 WHERE sowing_location_id=1 AND plant_id=$3`,
+    [
+      sowing_date_start_inside || null,
+      sowing_date_end_inside || null,
+      editPlantId,
+    ]
+  );
+  const {
+    sowingOutside: { sowing_date_start_outside, sowing_date_end_outside },
+  } = req.body;
+  const {
+    rows: [sowing_outside],
+  } = await db.query(
+    `UPDATE sowing_periods SET sowing_date_start = $1, sowing_date_end=$2 WHERE sowing_location_id=2 AND plant_id=$3`,
+    [
+      sowing_date_start_outside || null,
+      sowing_date_end_outside || null,
+      editPlantId,
+    ]
   );
 
-  res.status(StatusCodes.OK).json({
-    plant,
-  });
+  res.status(StatusCodes.OK).json({ plant, sowing_inside, sowing_outside });
 };
 
 //*créer un plant (dashboard donovan)
@@ -91,10 +152,6 @@ const addPlant = async (req, res) => {
       crop_rotation,
       rows_spacing_in_cm,
       plants_spacing_in_cm,
-      sowing_date_start_inside,
-      sowing_date_end_inside,
-      // sowing_date_start_outside,
-      // sowing_date_end_outside,
     },
   } = req.body;
   const {
@@ -119,12 +176,43 @@ const addPlant = async (req, res) => {
     ]
   );
   const {
+    rows: [{ plant_id: plantToAddId }],
+  } = await db.query(`select plant_id from plants where name=$1`, [name]);
+  const sowing_inside_id = 1;
+  const {
+    sowingInside: { sowing_date_start_inside, sowing_date_end_inside },
+  } = req.body;
+  const {
     rows: [sowing_inside],
   } = await db.query(
-    'INSERT INTO sowing_periods (sowing_date_start_inside, sowing_date_end_inside) VALUES ($15, $16) WHERE sowing_location_id=1',
-    [sowing_date_start_inside, sowing_date_end_inside]
+    `INSERT into sowing_periods ( plant_id, sowing_location_id, sowing_date_start, sowing_date_end)  VALUES ($1, $2, $3, $4) RETURNING*`,
+    [
+      plantToAddId,
+      sowing_inside_id,
+      sowing_date_start_inside || null,
+      sowing_date_end_inside || null,
+    ]
   );
-  res.status(StatusCodes.CREATED).json({ plant }, { sowing_inside });
+
+  const sowing_outside_id = 2;
+  const {
+    sowingOutside: { sowing_date_start_outside, sowing_date_end_outside },
+  } = req.body;
+  const {
+    rows: [sowing_outside],
+  } = await db.query(
+    `INSERT into sowing_periods ( plant_id, sowing_location_id, sowing_date_start, sowing_date_end)  VALUES ($1, $2, $3, $4) RETURNING*`,
+    [
+      plantToAddId,
+      sowing_outside_id,
+      sowing_date_start_outside || null,
+      sowing_date_end_outside || null,
+    ]
+  );
+
+  res
+    .status(StatusCodes.CREATED)
+    .json({ plant, sowing_inside, sowing_outside });
 };
 
 module.exports = {

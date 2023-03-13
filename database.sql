@@ -71,8 +71,8 @@ CREATE TABLE plants_ennemies(
 CREATE TABLE sowing_periods(
   plant_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
   sowing_location_id INTEGER REFERENCES sowing_locations(sowing_location_id) ON DELETE CASCADE,
-  sowing_date_start DATE NOT NULL,
-  sowing_date_end DATE NOT NULL,
+  sowing_date_start DATE DEFAULT '' NOT NULL,
+  sowing_date_end DATE DEFAULT ''  NOT NULL,
   unique (sowing_location_id, plant_id)
 )
 

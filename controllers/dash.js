@@ -69,13 +69,39 @@ const getSinglePlantInfos = async (req, res) => {
   const { plant_id } = req.params;
   const {
     rows: [plant],
+  } = await db.query('SELECT * FROM plants WHERE plant_id=$1', [plant_id]);
+  const {
+    rows: [sowing_inside],
   } = await db.query(
-    // `SELECT * FROM plants INNER JOIN sowing_periods ON plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id INNER JOIN plants_friends ON plants.plant_id=plants_friends.plant_friend_id INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id WHERE plants.plant_id = $1`,
-    'SELECT * FROM plants WHERE plant_id=$1',
+    `SELECT * FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 1 AND plants.plant_id = $1`,
+    [plant_id]
+  );
+  const {
+    rows: [sowing_outside],
+  } = await db.query(
+    `SELECT * FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 2 AND plants.plant_id = $1`,
+    [plant_id]
+  );
+  const {
+    rows: [plants_friends],
+  } = await db.query(
+    'SELECT plants.name AS plants_friends_name FROM plants INNER JOIN plants_friends ON plants.plant_id=plants_friends.plant_friend_id WHERE plants_friends.plant_id=$1',
+    [plant_id]
+  );
+  const {
+    rows: [plants_ennemies],
+  } = await db.query(
+    'SELECT plants.name AS plants_ennemies_name FROM plants INNER JOIN plants_ennemies ON plants.plant_id= plants_ennemies.plant_ennemy_id WHERE plants_ennemies.plant_id=$1',
     [plant_id]
   );
 
-  res.status(StatusCodes.OK).json({ plant });
+  res.status(StatusCodes.OK).json({
+    plant,
+    sowing_inside,
+    sowing_outside,
+    plants_ennemies,
+    plants_friends,
+  });
 };
 
 module.exports = {
