@@ -215,9 +215,20 @@ const addPlant = async (req, res) => {
     .json({ plant, sowing_inside, sowing_outside });
 };
 
+const deleteSinglePlant = async (req, res) => {
+  const { id: plant_id } = req.params;
+
+  const { rows: plant } = await db.query(
+    'DELETE FROM plants WHERE plant_id = $1 RETURNING *',
+    [plant_id]
+  );
+  res.status(StatusCodes.OK).json({ plant });
+};
+
 module.exports = {
   getAllPlants,
   getSinglePlant,
   editSinglePlantInfos,
   addPlant,
+  deleteSinglePlant,
 };
