@@ -97,27 +97,7 @@ const register = async (req, res) => {
     ]
   );
 
-  // génère un token qui va permettre de retrouver les infos de l'user
-  // const token = jwt.sign(
-  //   {
-  //     userID: user.user_id,
-  //     name: user.firstname,
-  //   },
-  //   process.env.JWT_SECRET,
-  //   {
-  //     expiresIn: process.env.JWT_LIFETIME,
-  //   }
-  // );
-
   res.status(StatusCodes.CREATED).json(user);
-  //   .json({
-  //     user: {
-  //       name: user.firstname,
-  //       role: role_id,
-  //       email: user.email,
-  //     },
-  //     token,
-  //   });
 };
 
 //* login
