@@ -8,10 +8,6 @@ const errorHandler = (err, req, res, next) => {
     msg: err.message || 'il y a eu une erreur, veuillez réessayer plus tard',
   };
 
-  // if (err instanceof CustomError) {
-  //   return res.status(err.statusCode).json({ msg: err.message });
-  // }
-
   // si l'email est dupliqué
   if (err.code && err.code === '23505') {
     customError.msg = `identifiant déjà utilisé`;
