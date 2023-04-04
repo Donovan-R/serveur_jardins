@@ -54,20 +54,6 @@ CREATE TABLE plants(
     plants_spacing_in_cm INTEGER,
     UNIQUE (name)
 );
-
-
-CREATE TABLE plants_friends(
-  plant_id INTEGER REFERENCES plants(plant_id ) ON DELETE CASCADE NOT NULL,
-  plant_friend_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
-  unique (plant_friend_id, plant_id)
-)
-
-CREATE TABLE plants_ennemies(
-  plant_id INTEGER REFERENCES plants(plant_id ) ON DELETE CASCADE NOT NULL,
-  plant_ennemy_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
-  unique (plant_ennemy_id, plant_id)
-)
-
 CREATE TABLE sowing_periods(
   plant_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
   sowing_location_id INTEGER REFERENCES sowing_locations(sowing_location_id) ON DELETE CASCADE,
@@ -81,3 +67,14 @@ CREATE TABLE sowing_locations(
   name VARCHAR(20) NOT NULL
 )
 
+-- CREATE TABLE plants_friends(
+--   plant_id INTEGER REFERENCES plants(plant_id ) ON DELETE CASCADE NOT NULL,
+--   plant_friend_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
+--   unique (plant_friend_id, plant_id)
+-- )
+
+-- CREATE TABLE plants_ennemies(
+--   plant_id INTEGER REFERENCES plants(plant_id ) ON DELETE CASCADE NOT NULL,
+--   plant_ennemy_id INTEGER REFERENCES plants(plant_id) ON DELETE CASCADE NOT NULL,
+--   unique (plant_ennemy_id, plant_id)
+-- )
