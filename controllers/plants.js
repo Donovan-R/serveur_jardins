@@ -73,12 +73,6 @@ const editSinglePlantInfos = async (req, res) => {
       crop_rotation,
       rows_spacing_in_cm,
       plants_spacing_in_cm,
-      // sowing_date_start_inside,
-      // sowing_date_end_inside,
-      // sowing_date_start_outside,
-      // sowing_date_end_outside,
-      // plants_friends_name,
-      // plants_ennemies_name,
     },
   } = req.body;
   const { id: editPlantId } = req.params;

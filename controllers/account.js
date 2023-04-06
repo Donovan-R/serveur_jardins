@@ -1,10 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const db = require('../db');
-const {
-  BadRequestError,
-  NotFoundError,
-  UnauthentificatedError,
-} = require('../errors');
+const { BadRequestError, UnauthentificatedError } = require('../errors');
 const bcrypt = require('bcrypt');
 
 const getUserInfos = async (req, res) => {
