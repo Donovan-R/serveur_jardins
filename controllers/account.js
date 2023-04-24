@@ -90,7 +90,7 @@ const updatePassword = async (req, res) => {
   );
 
   if (!isPasswordCorrect) {
-    throw new UnauthentificatedError('mdp incorrect');
+    throw new UnauthentificatedError('mot de passe incorrect');
   }
 
   if (!newPassword || newPassword.length < 5) {
