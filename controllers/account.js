@@ -21,6 +21,12 @@ const deleteAccount = async (req, res) => {
   res.status(StatusCodes.OK).json({ data });
 };
 
+/*
+============
+update user | 
+============
+*/
+
 const updateUserInfos = async (req, res) => {
   const {
     userInfos: { lastname, firstname, mobile, email },
@@ -64,6 +70,12 @@ const updateUserInfos = async (req, res) => {
   );
   res.status(StatusCodes.OK).json({ user });
 };
+
+/*
+================
+update password| 
+================
+*/
 
 const updatePassword = async (req, res) => {
   const { originalPassword, newPassword } = req.body;

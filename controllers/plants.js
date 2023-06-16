@@ -24,13 +24,13 @@ const getSinglePlant = async (req, res) => {
   const {
     rows: [sowing_inside],
   } = await db.query(
-    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_inside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_inside FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 1 AND plants.plant_id = $1`,
+    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_inside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_inside FROM sowing_periods INNER JOIN plants ON plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 1 AND plants.plant_id = $1`,
     [id]
   );
   const {
     rows: [sowing_outside],
   } = await db.query(
-    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_outside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_outside FROM sowing_periods INNER JOIN plants on plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 2 AND plants.plant_id = $1`,
+    `SELECT TO_CHAR(sowing_date_start, 'dd/mm') AS sowing_date_start_outside, TO_CHAR(sowing_date_end, 'dd/mm') AS sowing_date_end_outside FROM sowing_periods INNER JOIN plants ON plants.plant_id=sowing_periods.plant_id INNER JOIN sowing_locations ON sowing_locations.sowing_location_id = sowing_periods.sowing_location_id WHERE sowing_locations.sowing_location_id = 2 AND plants.plant_id = $1`,
     [id]
   );
   const {
